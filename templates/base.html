@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Loading main css file -->
+    <style>
+        @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #3d8da0, 0 0 40px #3d8da0, 0 0 50px #3d8da0, 0 0 60px #3d8da0, 0 0 70px #3d8da0;
+    }
+  
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ffffff, 0 0 40px #87b1c2, 0 0 50px #87b1c2, 0 0 60px #87b1c2, 0 0 70px #87b1c2, 0 0 80px #87b1c2;
+    }
+  }
+
+  /* Apply the glow animation to elements with the "glow" class */
+  .glow {
+    font-size: 80px;
+    color: #fff;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+#login-model{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgb(0,0,0,0,.6);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.model{
+    background: #e6ecf0;
+    padding: 5px,0px,5px,5px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+ }
+ .top-form{
+    display: flex;
+    justify-content: flex-end;
+ }
+ .top-form .close-model{
+    cursor: pointer;
+    padding: 0, 20px;
+    font-size: 20px;
+ }
+ .login-form form input{
+    width: 75%;
+    margin-bottom: 20px;
+    padding: 12px,12px;
+    box-sizing: border-box;
+    border: 1px solid #090a0a;
+ }
+    </style>
+    <script type="text/javascript">
+      // Function to show the login model
+      function showLoginModel() {
+        document.getElementById('login-model').style.display = 'flex';
+      }
+
+      // Function to close the login model
+      function closeLoginModel() {
+        document.getElementById('login-model').style.display = 'none';
+      }
+
+      // Function to validate login credentials
+      function login() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        // Check if the entered email and password match the desired credentials
+        if (email === 'maneesha@gmail.com' && password === '12345678') {
+          alert('Login successful!');
+          // You can redirect to another page or perform additional actions here
+          closeLoginModel(); // Close the login model after successful login
+        } else {
+          alert('Invalid credentials. Please try again.');
+        }
+      }
+    </script>
+
+  </head>
+  
+
+  <body>
+
+    <div class="site-content" style="background-color:rgb(162, 167, 170);">
+      <div class="site-header" style="padding: 20px;">
+        <div class="container">
+          <a href="{% url 'home' %}" class="branding">
+            <img src="{%static 'images/logo.png' %}" alt="" class="logo">
+            <div class="logo-type">
+              <h1 class="site-title" style="color:black"> Weather Forecast </h1>
+              <small class="site-description" style="color:black">Real time weather forecast</small>
+            </div>
+          </a>
+
+          <!-- Default snippet for navigation -->
+          <div class="main-navigation">
+            <button type="button" class="menu-toggle" onclick="showLoginModel()"><i class="fa fa-bars"></i></button>
+            <ul class="menu">
+              <li class="menu-item current-menu-item" id="omar"><a href="#" style="color:black">Sign in</a></li>
+              <li class="menu-item current-menu-item"  onclick="showLoginModel()"><a id="login" style="color:black">Login</a></li>
+            </ul>
+          </div><!-- .main-navigation -->
+
+          <!-----Login Model----->
+          <div id="login-model" style="display: none;">
+            <div class="model">
+              <div class="top-form">
+                <div class="close-model" onclick="closeLoginModel()">
+                  &#10006;
+                </div>
+              </div>
+              <div class="login-form">
+                <h2 style="color: #090a0a;">Login with Email</h2>
+                <form action="second">
+                  <input type="text" class="form-control" placeholder="E-mail" name="username" id="email">
+                  <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                  <input type="submit" id="log" class="submit-btn" name="submit" onclick="login()">
+                </form>
+              </div>
+            </div>
+          </div>
+          <!----Login model ends----->
+
+          <div class="mobile-navigation"></div>
+
+        </div>
+      </div> <!-- .site-header -->
+
+      <div class="hero" data-bg-image="{% static 'images/climate.jpg' %}" style="padding: 150px;">
+        <div class="container">
+            <div>
+                <p class="text-uppercase fw-bold mb-2 glow" style="color: black;font-size: 35px;font-weight: bolder;">Welcome to the</p>
+                <h1 class="display-1  mb-4 animated slideInDown glow" style="color: grey;">Weather Forecasting</h1>
+                <p class="fs-5 mb-4 pb-3 glow" style="color: black;font-size: 30px;font-weight: bolder;"> Display real-time weather information such as
+                    temperature, humidity, wind speed, and precipitation.
+                    </p>
+            </div>
+  
+          </div>
+    </div>
+        
+
+        <footer>
+            <div style="padding: 6px;color: black;text-align:center;">
+                <p>Copyrights 2023, Designed by Maneesha Avula</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{%static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{%static 'js/plugins.js' %}"></script>
+    <script src="{%static 'js/app.js' %}"></script>
+
+  </body>
+
+</html>

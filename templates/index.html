@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Loading main css file -->
+
+  </head>
+
+  <body>
+
+    <div class="site-content" style="background-color:rgb(162, 167, 170);">
+      <div class="site-header">
+        <div class="container">
+          <a href="{% url 'home' %}" class="branding">
+            <img src="{%static 'images/logo.png' %}" alt="" class="logo">
+            <div class="logo-type">
+              <h1 class="site-title" style="color:black"> Weather Forecast </h1>
+              <small class="site-description" style="color:black">Real time weather forecast</small>
+            </div>
+          </a>
+
+          <!-- Default snippet for navigation -->
+          <div class="main-navigation">
+            <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+            <ul class="menu">
+              <li class="menu-item current-menu-item" id="oma2"><a href="#" style="color:black">Hii, Maneesha</a></li>
+              <li class="menu-item current-menu-item" id="omar"><a href="{% url 'second' %}" id="home" style="color:black">Home</a></li>
+              <li class="menu-item current-menu-item" id="omar1"><a href="{% url 'home' %}" id="out" style="color:black">Log out</a></li>
+            </ul> <!-- .menu -->
+          </div> <!-- .main-navigation -->
+
+          <div class="mobile-navigation"></div>
+
+        </div>
+      </div> <!-- .site-header -->
+
+      <div class="hero" data-bg-image="{% static 'images/climate.jpg' %}">
+        <div class="container">
+          <form action="{%url 'result'%}" class="find-location" method="post">
+            {% csrf_token%}
+            <input type="text" id="city" style="background-color:rgb(162, 167, 170);" name="city" placeholder="Enter your city name..." required>
+            <input type="submit" id="find" value="Find">
+          </form>
+
+        </div>
+      </div>
+        {% block content %}
+
+        {% endblock content %}
+
+        <footer class="site-footer" style="background-color:rgb(162, 167, 170);">
+          <div class="container">
+            <p class="colophon" style="padding-top: 60px;padding-bottom: 55px; color: black;">Copyright 2023, All rights reserved Maneesha Avula</p>
+          </div>
+        </footer>
+    </div>
+
+    <script src="{%static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{%static 'js/plugins.js' %}"></script>
+    <script src="{%static 'js/app.js' %}"></script>
+
+  </body>
+
+</html>
